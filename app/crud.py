@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from .models import Job
 
 def upsert_jobs(db: Session, job_list: list):
