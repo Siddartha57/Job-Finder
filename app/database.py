@@ -1,13 +1,28 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-from .config import settings
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine(settings.DATABASE_URL, pool_pre_ping=True)
+if not DATABASE_URL:
+    raise ValueError("❌ DATABASE_URL is not set. Add it in Render → Environment Variables.")
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,       
+)
+
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
 
 Base = declarative_base()
+
 
 def get_db():
     db = SessionLocal()
