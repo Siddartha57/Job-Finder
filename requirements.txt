@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+httpx
+sqlmodel
+psycopg[binary]
+alembic
+APScheduler
+python-dotenv
+python-multipart
